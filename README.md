@@ -48,16 +48,6 @@ Aplicación diseñada para poder gestionar películas, donde también se usó [T
 
 _En la siguiente sección se explica qué se necesita para ejecutar la aplicación_   
 
-### Ejercicio 01
-Para ejecutar el ejercicio 01 necesitas:
-
--- [Google Chrome](https://www.google.com/intl/es_es/chrome/) (_o cualquier navegador equivalente._)
-
--- [Visual Studio Code](https://code.visualstudio.com/)
-
-### Ejercicio 02
-Para ejecutar el ejercicio 02 necesitas:
-
 -- [Google Chrome](https://www.google.com/intl/es_es/chrome/) (_o cualquier navegador equivalente._)
 
 -- [Visual Studio Code](https://code.visualstudio.com/)
