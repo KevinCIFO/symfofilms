@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block title %}Portada{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <h4 style="margin-left: 1%">Películas añadidas recientemente en <b>Symfofilms</b></h4>
+
+    <style>
+        .imagebox {
+            padding: 0px;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            border-radius: 5%;
+            border: 2px solid black;
+        }
+
+        .imagebox .titulo {
+            background-color: rgba(0, 0, 0, 0.6);
+            bottom: 0px;
+            color: white;
+            font-size: 1.2em;
+            left: 0px;
+            padding: 10px 15px;
+            position: absolute;
+            transition: 0.5s padding;
+            text-align: center;
+            width: 100%;
+            border-bottom-left-radius: 15px 10px;
+            border-bottom-right-radius: 15px 10px;
+        }
+
+        .imagebox .estreno {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 1.2em;
+            padding: 10px 15px;
+            position: absolute;
+            margin-left: 65%;
+            margin-top: 5%;
+            border-radius: 15%;
+        }   
+
+        .imagebox:hover .titulo {
+            padding-bottom: 10%;
+        }
+
+        .imagen {
+            border-radius: 5%;
+        }
+    </style>
+
+    <div class="d-flex flex-wrap">
+        {# {% for i in 1..4 %} #}
+        {% for pelicula in peliculas %}
+            <figure class="m-2">
+                <div class="imagebox">
+                    <a href="{{ path('pelicula_show', {'id':pelicula.id}) }}">
+                        <span class="estreno">{{ pelicula.estreno }}</span>
+                        <img height="380" width="230" class="imagen" alt="Imagen de {{ pelicula.titulo }}" title="Imagen de {{ pelicula.titulo }}" src="{{ asset(covers_directory ~ '/' ~ (pelicula.imagen ?? 'default.jpg')) }}">
+                        <span class="titulo">{{ pelicula.titulo }}</span>
+                    </a>
+                </div>
+            </figure>
+            {# {% endfor %} #}
+        {% endfor %}
+    </div>
+    {% 
+        include '/includes/paginatorPortada.html.twig' with
+            {
+                'route': 'portada',
+                'entidades': 'películas'
+            }
+    %}
+{% endblock %}

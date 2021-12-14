@@ -1,0 +1,15 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    globals:
+        covers_directory: '%app.covers%'
+        frase: '@App\Service\FrasesService'
+        entityFaker: '@App\Service\EntityFakerService'
+        paginator_links: '%app.paginator_links%'
+    form_themes: ['bootstrap_5_layout.html.twig', 'widgets/data_list.html.twig']
+    paths:
+        '%kernel.project_dir%/public/css': styles
+        '%kernel.project_dir%/public/images': images
+
+when@test:
+    twig:
+        strict_variables: true

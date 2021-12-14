@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Detalles del actor {% endblock %}
+{% block main %}
+    {{ parent() }}
+    <h2>{{ actor.nombre }}</h2>
+
+    <div class="border row align-items-center justify-content-center my-3" style="width: 100%; margin-left: 0.5px;">
+        <div class="col my-3 p-3 text-start">
+            <p><b>ID</b>: {{ actor.id }}</p>
+            <p><b>Nombre y apellidos</b>: {{ actor.nombre }}</p>
+            <p><b>Fecha de nacimiento</b>: {{ actor.fechaNacimiento }}</p>
+            <p><b>Nacionalidad</b>: {{ actor.nacionalidad }}</p>
+        </div>
+        <div class="col my-3 p-3 text-center">
+            <img class="rounded" style="max-width: 240px" alt="Imagen de {{ actor.nombre }}" title="Imagen de {{ actor.nombre }}" src="{{ asset(covers_directory ~ '/' ~ (actor.imagen ?? 'default.jpg')) }}">
+        </div>
+    </div>
+    <div class="border my-3 p-3" style="width: 100%;">
+        <h2>Biografía:</h2>
+        <p>{{ actor.biografia }}</p>
+    </div>
+
+    {% if actor.getPeliculas()|length > 0 %}
+        <h2>Películas en las que aparece</h2>
+        {% set peliculas = actor.getPeliculas() %}
+        {% include '/includes/lista_peliculas.html.twig' %}
+    {% endif %}
+
+    <div class="text_center">
+        <a href="{{ path('actores') }}">
+            <img height="20" width="20" alt="Lista de actores" title="Lista de actores" src="{{ asset('/images/buttons/list.png') }}">
+        </a>
+        {% if is_granted('edit', actor) %}
+        <a href="{{ path('actor_update', {'id':actor.id}) }}">
+            <img height="20" width="20" alt="Editar" title="Editar" src="{{ asset('/images/buttons/update.png') }}">
+        </a>
+        {% endif %}
+        {% if is_granted('delete', actor) %}
+        <a href="{{ path('actor_delete', {'id':actor.id}) }}">
+            <img height="20" width="20" alt="Eliminar" title="Eliminar" src="{{ asset('/images/buttons/delete.png') }}">
+        </a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+<table class="table table-striped table-bordered">
+    <tr class="text-center">
+        <th>ID</th>
+        <th>Imagen</th>
+        <th>Nombre y apellidos</th>
+        <th>Fecha de nacimiento</th>
+        <th>Nacionalidad</th>
+        <th>Operaciones</th>
+    </tr>
+    {% for actor in actores %}
+    <tr class="text-center">
+        <td>{{ actor.id }}</td>
+        <td>
+            <img class="rounded" style="width: 150px" alt="Imagen de {{ actor.nombre }}" title="Imagen de {{ actor.nombre }}" src="{{ asset(covers_directory ~ '/' ~ (actor.imagen ?? 'default.jpg')) }}">
+        </td>
+        <td><b>{{ actor.nombre }}</b></td>
+        <td>{{ actor.fechaNacimiento }}</td>
+        <td>{{ actor.nacionalidad }}</td>
+        <td>
+            <a href="{{ path('actor_show', {'id':actor.id}) }}">
+                <img height="20" width="20" alt="Detalles" title="Detalles" src="/images/buttons/show.png">
+            </a>
+            {% if is_granted('edit', actor) %}
+            <a href="{{ path('actor_update', {'id':actor.id}) }}">
+                <img height="20" width="20" alt="Editar" title="Editar" src="/images/buttons/update.png">
+            </a>
+            {% endif %}
+            {% if is_granted('delete', actor) %}
+            <a href="{{ path('actor_delete', {'id':actor.id}) }}">
+                <img height="20" width="20" alt="Eliminar" title="Eliminar" src="/images/buttons/delete.png">
+            </a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>

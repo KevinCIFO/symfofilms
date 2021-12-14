@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}Eliminar película{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <div class="bg-light border row align-items-center justify-content-center my-3">
+        <div class="col-6 p-4">
+            <p>¿Estás seguro de eliminar la película <b>{{ pelicula.titulo }}</b>?</p>
+            <p>Pulsa <b>confirmar</b> para continuar</p>
+
+            {{ form(formulario) }}
+        </div>
+        <div class="col-6 text-center bg-light">
+            <figure class="p-2">
+                <img class="rounded border movie-cover" style="max-width: 240px" alt="Imagen de {{ pelicula.titulo }}" title="Imagen de {{ pelicula.titulo }}" src="{{ asset(covers_directory ~ '/' ~ (pelicula.imagen ?? 'default.jpg')) }}">
+            </figure>
+        </div>
+    </div>
+{% endblock %}

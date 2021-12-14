@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %} - Symfofilms</title>
+
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="shortcut icon" type="image/png" href="{{ asset('/images/template/logo.png') }}">
+    {% endblock %}
+    </head>
+    <body class="container p-3">
+    {% block body %}
+        {% block login %}
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <div class="my-1 text-end">
+                    <a href="{{ path('home') }}">
+                        {{ app.user.displayname }}
+                        <span style="font-size: 0.8em">({{ app.user.email }})</span>
+                    </a>
+                    {% if is_granted('read', entityFaker.getMock('User')) %}
+                    -
+                    <a href="{{ path('usuarios') }}">Lista de usuarios</a>
+                    {% endif %}
+                    -
+                    <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% else %}
+                <div class="my-1" style="display: flex; padding-left: 80%;">
+                    <a style="vertical-align: middle" class="nav-link" href="{{ path('app_login') }}">Acceder
+                        <img src="{{ asset('images/buttons/login.png') }}" alt="login" height="25" width="25">
+                    </a>
+                    <a style="vertical-align: middle" class="nav-link" href="{{ path('app_register') }}">Registrarse
+                        <img src="{{ asset('images/buttons/register.png') }}" alt="register" height="25" width="25">
+                    </a>
+                </div>
+            {% endif %}
+        {% endblock %}
+        {% block header %}
+        <header class="d-flex">
+            <div class="col-8">
+                <hgroup>
+                    <h1>Symfofilms</h1>
+                    <h2>Página de películas</h2>
+                </hgroup>
+                <p style="font-style: italic">{{ frase.getFraseAleatoria() }}</p>
+            </div>
+            <figure class="col-4 text-end" style="margin-left: 1.4%">
+                <a href="/">
+                    <img class="h-auto" alt="logo" src="{{ asset('/images/template/logo.png') }}">
+                </a>
+            </figure>
+        </header>
+        {% endblock %}
+
+        {% block nav %}
+        <div class="d-flex">
+            <nav class="col-10">
+                <ul class="nav nav-pills">
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-primary {{app.request.get('_route')=='portada'?'active'}}" href="{{ path('portada') }}">Inicio</a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-primary {{app.request.get('_route')=='peliculas'?'active'}}" href="{{ path('peliculas') }}">Lista de películas</a>
+                    </li>
+                    {% if is_granted('create', entityFaker.getMock('Pelicula')) %}
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-primary {{app.request.get('_route')=='pelicula_create'?'active'}}" href="{{ path('pelicula_create') }}">Nueva película</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-primary {{app.request.get('_route')=='pelicula_search'?'active'}}" href="{{ path('pelicula_search') }}">Buscar película</a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-primary {{app.request.get('_route')=='actores'?'active'}}" href="{{ path('actores') }}">Lista de actores</a>
+                    </li>
+                    {% if is_granted('create', entityFaker.getMock('Actor')) %}
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-primary {{app.request.get('_route')=='actor_create'?'active'}}" href="{{ path('actor_create') }}">Nuevo actor</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-primary {{app.request.get('_route')=='actor_search'?'active'}}" href="{{ path('actor_search') }}">Buscar actor</a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-primary {{app.request.get('_route')=='contacto'?'active'}}" href="{{ path('contacto') }}">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="col-2 pt-2 text-end">
+                {{ "now"|date('d/m/Y H:i', timezone="Europe/Madrid") }}
+            </div>
+        </div>
+        {% endblock %}
+
+        <main class="my-3">
+        {% block main %}
+            {% block success %}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endblock %}
+        {% endblock %}
+        </main>
+
+        {% block footer %}
+        <footer>
+            <p>Symfofilms - Desarrollado con <b>Symfony</b> y <b>Bootstrap</b>. Todos los derechos reservados.</p>
+        </footer>
+        {% endblock %}
+    {% endblock %}
+    </body>
+</html>

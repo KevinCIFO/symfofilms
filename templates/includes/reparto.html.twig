@@ -1,0 +1,49 @@
+<style>
+    .imagebox {
+        padding: 0px;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        border-radius: 5%;
+        border: 2px solid black;
+    }
+
+    .imagebox .nombre {
+        background-color: rgba(0, 0, 0, 0.6);
+        bottom: 0px;
+        color: white;
+        font-size: 0.8em;
+        left: 0px;
+        padding: 10px 15px;
+        position: absolute;
+        transition: 0.5s padding;
+        text-align: center;
+        width: 100%;
+        border-bottom-left-radius: 10px 10px;
+        border-bottom-right-radius: 10px 10px;
+    } 
+
+    .imagebox:hover .nombre {
+        padding-bottom: 10%;
+    }
+
+    .imagen {
+        border-radius: 5%;
+        width: 150px;
+    }
+</style>
+
+<div class="d-flex flex-wrap">
+    {# {% for i in 1..4 %} #}
+    {% for actor in actores %}
+        <figure class="m-2">
+            <div class="imagebox">
+                <a href="{{ path('actor_show', {'id':actor.id}) }}">
+                    <img class="imagen" alt="Imagen de {{ actor.nombre }}" title="Imagen de {{ actor.nombre }}" src="{{ asset(covers_directory ~ '/' ~ (actor.imagen ?? 'default.jpg')) }}">
+                    <span class="nombre">{{ actor.nombre }}</span>
+                </a>
+            </div>
+        </figure>
+        {# {% endfor %} #}
+    {% endfor %}
+</div>

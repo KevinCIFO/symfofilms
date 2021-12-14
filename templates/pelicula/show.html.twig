@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block title %}Detalles de la película {% endblock %}
+{% block main %}
+    {{ parent() }}
+    <h2>{{ pelicula.titulo }}</h2>
+
+    <div class="border row align-items-center justify-content-center my-3" style="width: 100%; margin-left: 0.5px;">
+        <div class="col my-3 p-3 text-start">
+            <p><b>ID</b>: {{ pelicula.id }}</p>
+            <p><b>Título</b>: {{ pelicula.titulo }}</p>
+            <p><b>Año</b>: {{ pelicula.estreno }}</p>
+            <p><b>Duración</b>: {{ pelicula.duracion }} minutos</p>
+            <p><b>Director</b>: {{ pelicula.director }}</p>
+            <p><b>Género</b>: {{ pelicula.genero }}</p>
+            <p><b>Valoración</b>: {% if pelicula.valoracion != NULL %}
+                                    {% for i in 1..5 %}
+                                        {% if i <= pelicula.valoracion %}
+                                            <img height="25" width="25" alt="{{ pelicula.valoracion }}/5" title="{{ pelicula.valoracion }}/5" src="{{ asset('images/samples/estrellaon.gif') }}">
+                                        {% else %}
+                                            <img height="25" width="25" alt="{{ pelicula.valoracion }}/5" title="{{ pelicula.valoracion }}/5" src="{{ asset('images/samples/estrellaoff.gif') }}">
+                                        {% endif %}
+                                    {% endfor %}
+                                  {% else %}
+                                      <p>Sin valorar</p>
+                                  {% endif %}
+            </p>
+            {% if pelicula.getUser() %}
+                <p>Película añadida por el usuario <b>{{ pelicula.getUser().username }}</b></p>
+            {% endif %}
+        </div>
+        <div class="col my-3 p-3 text-center">
+            <img class="rounded" style="max-width: 240px" alt="Imagen de {{ pelicula.titulo }}" title="Imagen de {{ pelicula.titulo }}" src="{{ asset(covers_directory ~ '/' ~ (pelicula.imagen ?? 'default.jpg')) }}">
+        </div>
+    </div>
+    <div class="border my-3 p-3" style="width: 100%;">
+        <h2>Sinopsis:</h2>
+        <p>{{ pelicula.sinopsis }}</p>
+    </div>
+    {% if pelicula.getActores()|length > 0 %}
+        <h2>Reparto</h2>
+        {% set actores = pelicula.getActores() %}
+        {% include '/includes/reparto.html.twig' %}
+    {% endif %}
+    <div class="text_center">
+        <a href="{{ path('peliculas') }}">
+            <img height="20" width="20" alt="Lista de películas" title="Lista de películas" src="{{ asset('/images/buttons/list.png') }}">
+        </a>
+        {% if is_granted('edit', pelicula) %}
+        <a href="{{ path('pelicula_update', {'id':pelicula.id}) }}">
+            <img height="20" width="20" alt="Editar" title="Editar" src="{{ asset('/images/buttons/update.png') }}">
+        </a>
+        {% endif %}
+        {% if is_granted('delete', pelicula) %}
+        <a href="{{ path('pelicula_delete', {'id':pelicula.id}) }}">
+            <img height="20" width="20" alt="Eliminar" title="Eliminar" src="{{ asset('/images/buttons/delete.png') }}">
+        </a>
+        {% endif %}
+    </div>
+{% endblock %}

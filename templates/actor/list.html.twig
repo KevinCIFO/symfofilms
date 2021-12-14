@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}Listado de actores{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <p>Listado de actores de <b>Symfofilms</b></p>
+
+    {% include '/includes/lista_actores.html.twig' %}
+    {% 
+        include '/includes/paginator.html.twig' with
+            {
+                'route': 'actores',
+                'entidades': 'actores'
+            }
+    %}
+{% endblock %}

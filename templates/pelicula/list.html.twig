@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}Catálogo de películas{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <p>Listado de películas de <b>Symfofilms</b></p>
+    
+    {% include '/includes/lista_peliculas.html.twig' %}
+    {% 
+        include '/includes/paginator.html.twig' with
+            {
+                'route': 'peliculas',
+                'entidades': 'películas'
+            }
+    %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Editar actor{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <p>Edición de los datos del actor <b>{{ actor.nombre }}</b></p>
+
+    <div class="bg-light border row align-items-center justify-content-center my-3">
+        <div class="col-6 p-4">
+            {{ form(formulario) }}
+        </div>
+        <div class="col-6 text-center bg-light">
+            <figure class="my-2 p-2">
+                {# <img id="actual" class="rounded border movie-cover" style="max-width: 100px" alt="Imagen de {{ pelicula.titulo }}" title="Imagen de {{ pelicula.titulo }}" src="{{ asset(covers_directory ~ '/' ~ (pelicula.imagen ?? 'default.jpg')) }}"> #}
+                <img id="preview" class="rounded border movie-cover" style="max-width: 500px" alt="Imagen de {{ actor.nombre }}" title="Imagen de {{ actor.nombre }}" src="{{ asset(covers_directory ~ '/' ~ (actor.imagen ?? 'default.jpg')) }}">
+                {# <div id="preview"></div> #}
+                <script>
+                    document.getElementById("actor_form_imagen").onchange = function(e) {
+                        if(!e.target.files[0].name.match(/\.(jpe?g|png|gif)$/i)){
+                            alert("El fomato del fichero debe ser JPG, PNG o GIF");
+                            document.getElementById("preview").src=document.getElementById("preview").src;
+                            e.target.value = '';
+                        }else{
+                            // Creamos el objeto de la clase FileReader
+                            let reader = new FileReader();
+
+                            // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+                            reader.readAsDataURL(e.target.files[0]);
+
+                            // Le decimos que cuando este listo ejecute el código interno
+                            reader.onload = function(){
+                                let preview = document.getElementById("preview").src=reader.result;
+
+                                //image.src = reader.result;
+
+                                //preview.innerHTML = '';
+                                //preview.append(image);
+                            };
+                        }
+                    }
+                </script>
+            </figure>
+        </div>
+    </div>
+{% endblock %}
