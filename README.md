@@ -59,7 +59,8 @@ _En la siguiente sección se explica qué se necesita para ejecutar la aplicaci�
 ## Autor ✒️
 
 - **Kevin Larriega Palomino**  
---   kevinlarriega@gmail.com
+--   kevinlarriega@gmail.com  
+--   kevinlarriega@gmail.com  
+--   kevinlarriega@gmail.com  
 --   https://github.com/kevinlarriega
 --   https://github.com/KevinCIFO
---   https://github.com/kevinlarriega
