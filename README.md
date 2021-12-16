@@ -56,9 +56,7 @@ _En la siguiente sección se explica qué se necesita para ejecutar la aplicaci�
 
 -- [Visual Studio Code](https://code.visualstudio.com/)
 
--- [Google Chrome](https://www.google.com/intl/es_es/chrome/) (_o cualquier navegador equivalente._)
-
-**También necesitamos el fichero de texto input.txt.txt para este ejercicio**      
+-- [Google Chrome](https://www.google.com/intl/es_es/chrome/) (_o cualquier navegador equivalente._)   
 
 ## Autor ✒️
 
