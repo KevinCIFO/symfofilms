@@ -1,5 +1,5 @@
 <p align="center">
-<img src="../images/template/logo.png" width="300">
+<img src="public/images/template/logo.png" width="300">
 </p>
 
 # Symfofilms - Página de películas
