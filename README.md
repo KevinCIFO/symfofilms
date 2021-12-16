@@ -48,11 +48,15 @@ Aplicación diseñada para poder gestionar películas, donde también se usó [T
 
 _En la siguiente sección se explica qué se necesita para ejecutar la aplicación_   
 
--- [Google Chrome](https://www.google.com/intl/es_es/chrome/) (_o cualquier navegador equivalente._)
+-- [Node](https://nodejs.org/es/)
+
+-- [XAMPP](https://www.apachefriends.org/es/index.html)
+
+-- [Composer](https://getcomposer.org/)
 
 -- [Visual Studio Code](https://code.visualstudio.com/)
 
--- [XAMPP](https://www.apachefriends.org/es/index.html)
+-- [Google Chrome](https://www.google.com/intl/es_es/chrome/) (_o cualquier navegador equivalente._)
 
 **También necesitamos el fichero de texto input.txt.txt para este ejercicio**      
 
