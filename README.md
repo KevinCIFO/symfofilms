@@ -50,7 +50,7 @@ _En la siguiente sección se explica qué se necesita para ejecutar la aplicaci�
 
 -- [Node](https://nodejs.org/es/)
 
--- [XAMPP](https://www.apachefriends.org/es/index.html)
+-- [XAMPP](https://www.apachefriends.org/es/index.html) (_contiene Apache, PHP y MariaDB._)
 
 -- [Composer](https://getcomposer.org/)
 
