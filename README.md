@@ -35,7 +35,7 @@ Este proyecto es una aplicación web muy intuitiva y *user friendly* que te perm
 *   Buscar actor
     * Muestra la misma información que se puede ver en la lista de actores, con la diferencia de que justo arriba de la información se puede apreciar un formulario de búsqueda, el cual, valga la redundancia, permite al usuario aplicar filtros de búsqueda y así obtener información más precisa.
 *   Contacto
-    * Permite al usuario poder enviar un correo electrónico sobre cualquier duda a Symfofilms.
+    * Permite al usuario poder enviar un correo electrónico sobre cualquier duda al equipo de Symfofilms.
 
 ## Estructura del proyecto 📐
 Si bien es cierto que el proyecto se constituye básicamente de Symfony y Bootstrap, también se usó Twig para la parte de las vistas, así como un pequeño código de JavaScript para poder visualizar la imagen de la película o el actor en los formularios de creación y edición de los mismos.
